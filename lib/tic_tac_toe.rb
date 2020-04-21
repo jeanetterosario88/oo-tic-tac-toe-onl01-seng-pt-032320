@@ -143,7 +143,7 @@ def play
   turn until over?
   if over?
     puts "Congratulations #{winner}!" if winner !=nil
-    puts "The game ended with a draw." if draw?
+    puts "Cat's Game!" if draw?
 end
 end
     

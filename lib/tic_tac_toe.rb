@@ -142,8 +142,8 @@ class TicTacToe
 def play
   turn until over?
   if over?
-    "Congratulations #{winner}" if winner !=nil
-    "The game ended with a draw." if draw?
+    puts "Congratulations #{winner}" if winner !=nil
+    puts "The game ended with a draw." if draw?
 end
 end
     

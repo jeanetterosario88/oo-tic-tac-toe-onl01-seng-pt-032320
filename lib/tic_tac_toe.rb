@@ -98,34 +98,22 @@ class TicTacToe
   
   def won?
     WIN_COMBINATIONS.each do |wincomboarray|
-      if
-      @board[wincomboarray[0]] == "X" &&
-      @board[wincomboarray[1]] == "X" &&
-      @board[wincomboarray[2]] == "X"
-      return wincomboarray
-      elsif
-      @board[wincomboarray[0]] == "O" &&
-      @board[wincomboarray[1]] == "O" &&
-      @board[wincomboarray[2]] == "O"
-      return wincomboarray
-      else
-      return false
+      if @board[wincomboarray[0]] == "X" && @board[wincomboarray[1]] == "X" && @board[wincomboarray[2]] == "X"
+       return wincomboarray
+      elsif @board[wincomboarray[0]] == "O" && @board[wincomboarray[1]] == "O" && @board[wincomboarray[2]] == "O"
+       return wincomboarray
       end
     end
+    false
   end
  
-  
-  
   def full?
-    if display_board(@board) != (" ")
-      true
-    else
-      false
-    end
+    return false if @board[0..8].include?(" ")
+    return true if !@board[0..8].include?(" ")
   end
       
   def draw?
-    if full? == true && won? == nil
+    if full? == true && won? == false
       true
     else
       false
@@ -133,36 +121,30 @@ class TicTacToe
   end
       
   def over?
-    if draw? == true || won? == true
+    if draw? == true || won? != false
       true
     else
-      false
     end
   end
   
-  def winner 
-    if won? == true
-      if (display_board(@board)).count("X") > (display_board(@board)).count("O")
-        return "X" 
-      elsif (display_board(@board)).count(X) > (display_board(@board)).count(X)
-      return "O" 
+
+  def winner
+    if won? != false && @board[won?[0]] == "X"
+      return "X"
+    elsif won?!= false && @board[won?[0]] == "O"
+      return "O"
     else
       nil
     end
   end
+
+
+def play
+  turn until over?
+  if over?
+    puts "Congratulations #{winner}!" if winner !=nil
+    puts "Cat's Game!" if draw?
 end
-      
-def player
-    if won? == false && draw? == false
-    current_player
-    elsif won? == true
-      winner
-      puts "Congratulations #{winner}"
-    elsif draw? == true
-      "The game ended with a draw."
-    else
-      nil
-    end
-  end
+end
     
 end
